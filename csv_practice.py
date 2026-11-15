@@ -1,5 +1,5 @@
-#1 
-#2 
+#1 In Python, you can reuse code, unlike Excel, where you often have to copy and paste formulas. This makes Python more efficient for data analysis tasks, as you can write a function once and call it multiple times with different inputs.
+#2 A real-world use of append mode in Python is when you want to add new data to an existing log file without overwriting the previous entries. For example, if you're tracking sales transactions, you can open the log file in append mode and write each new transaction to the end of the file, preserving the history of all transactions.
 
 #Exercise 2
 import csv
@@ -75,8 +75,8 @@ with open('data/sales.csv', 'r') as file:
 
 print(f"Total Revenue: ${totalrevenue:,.2f}")
 
-#
-#
+# DictReader allows you to access the data in each row by column name instead of index, which can make the code more readable and maintainable.
+# Reader just gives you a list of values for each row, and you have to access the values by their index, which can be less clear, especially if the CSV file has many columns.
 
 #Exercise 7
 product_totals={}
