@@ -75,3 +75,45 @@ with open('data/sales.csv', 'r') as file:
 
 print(f"Total Revenue: ${totalrevenue:,.2f}")
 
+#
+#
+
+#Exercise 7
+product_totals={}
+with open('data/sales.csv', 'r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        product=row['product']
+        qty=int(row['quantity'])
+        price=float(row['price'])
+        line_total=qty*price
+        product_totals[product]=product_totals.get(product,0)+line_total
+
+print(f"{'Product':<20} {'Total Revenue':>15}")
+
+for product in sorted(product_totals.keys()):
+    print(f"{product:<20} ${product_totals[product]:>14,.2f}")
+
+#Exercise 8
+from datetime import datetime
+
+totalrevenue = 0.0
+csv_path='data/sales.csv'
+
+with open(csv_path, 'r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        quantity=int(row['quantity'])
+        price=float(row['price'])
+        line_total=quantity*price
+        totalrevenue+=line_total
+
+current_time=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+log_file='data/run_log.txt'
+os.makedirs(os.path.dirname(log_file), exist_ok=True)
+log_entry=f"{current_time} - Total Revenue: ${totalrevenue:,.2f}\n"
+
+with open(log_file, 'a') as log:
+    log.write(log_entry)
+
+print(f"Log entry added to {log_file}: {log_entry.strip()}")
