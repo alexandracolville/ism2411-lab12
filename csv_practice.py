@@ -34,3 +34,44 @@ with open('data/sales.csv', 'r') as file:
 
 print(f"Total Revenue: ${totalrevenue:,.2f}")
 
+#Exercise 5
+import os
+input_file = 'data/sales.csv'
+output_file = 'data/cleaned.csv'
+original_count = 0
+written_count = 0
+
+with open(input_file, mode='r', encoding='utf-8', newline='') as infile, \
+    open(output_file, mode='w', encoding='utf-8', newline='') as outfile:
+    reader = csv.reader(infile)
+    writer = csv.writer(outfile)
+    original_header = next(reader)
+    writer.writerow(['Product', 'Price', 'Qty', 'Total'])
+    for row in reader:
+        original_count += 1
+        product = row[0]
+        qty = float(row[1])
+        price = float(row[2])
+        total = qty * price
+        if total > 100.0:
+            writer.writerow([product, price, qty, total])
+            written_count += 1
+
+print(f"Original data rows: {original_count}")
+print(f"Rows written (> $100): {written_count}")
+
+#Exercise 6
+totalrevenue0 = 0.0
+
+with open('data/sales.csv', 'r') as file:
+    reader=csv.DictReader(file)
+    for row in reader:
+        item_name=row['product']
+        qty=int(row['quantity'])
+        price=float(row['price'])
+        line_total=qty*price
+        totalrevenue+=line_total
+        print(f"Item: {item_name}, Quantity: {qty}, Price: {price}, Total: ${line_total:,.2f}")
+
+print(f"Total Revenue: ${totalrevenue:,.2f}")
+
